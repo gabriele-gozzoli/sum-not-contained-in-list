@@ -11,7 +11,16 @@ from unittest import TestCase
 
 
 def sum_not_contained_in_list(integers: List[int]) -> bool:
-    pass
+    values = {value: index for index, value in enumerate(integers)}
+    if 0 in values.keys():
+        return False
+
+    for i in range(len(integers)):
+        for j in range(i + 1, len(integers)):
+            _sum = integers[i] + integers[j]
+            if _sum in values.keys():
+                return False
+    return True
 
 
 class Test(TestCase):
